@@ -6,489 +6,477 @@
   <title>面料快反论文日报 · 2026-04-03</title>
   <style>
     :root {
-      --primary: #1a6fc4;
-      --primary-light: #e8f1fb;
-      --accent: #e05c1a;
-      --accent-light: #fff3ee;
-      --text: #1a1a2e;
-      --text-sub: #555566;
-      --border: #d9dde8;
-      --bg: #f4f6fb;
+      --primary: #2563eb;
+      --primary-light: #dbeafe;
+      --accent: #0ea5e9;
+      --success: #16a34a;
+      --warning: #d97706;
+      --bg: #f8fafc;
       --card: #ffffff;
-      --tag-bg: #eaf2ff;
-      --tag-text: #1a6fc4;
-      --classic-bg: #fffbf0;
-      --classic-border: #f5c842;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-secondary: #64748b;
+      --tag-bg: #f1f5f9;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
-      padding: 0 0 60px;
+      line-height: 1.6;
+      font-size: 14px;
     }
-    /* ── 顶部 Banner ── */
-    .banner {
-      background: linear-gradient(135deg, #1a4fc4 0%, #1a6fc4 60%, #0fa3b1 100%);
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #1e40af 0%, #0369a1 100%);
       color: #fff;
-      padding: 28px 20px 22px;
-      text-align: center;
+      padding: 20px 16px 16px;
     }
-    .banner .logo { font-size: 13px; opacity: .75; letter-spacing: 2px; margin-bottom: 6px; }
-    .banner h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; letter-spacing: 1px; }
-    .banner .date { font-size: 13px; opacity: .85; }
-    .banner .badge {
-      display: inline-block;
-      background: rgba(255,255,255,.2);
-      border: 1px solid rgba(255,255,255,.4);
-      border-radius: 12px;
+    .header-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .header-icon { font-size: 28px; }
+    .header-title { font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+    .header-sub { font-size: 12px; opacity: 0.85; }
+    .header-meta {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;
+    }
+    .meta-badge {
+      background: rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 11px;
+    }
+
+    /* ── Filter bar ── */
+    .filter-bar {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .filter-label { font-size: 12px; color: var(--text-secondary); margin-right: 2px; }
+    .filter-btn {
+      border: 1.5px solid var(--border);
+      background: var(--tag-bg);
+      border-radius: 20px;
       padding: 3px 12px;
       font-size: 12px;
-      margin-top: 10px;
-    }
-
-    /* ── 检索信息卡 ── */
-    .info-card {
-      margin: 16px 14px 0;
-      background: var(--card);
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      padding: 14px 16px;
-      font-size: 13px;
-      color: var(--text-sub);
-    }
-    .info-card .row { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-bottom: 6px; }
-    .info-card .row:last-child { margin-bottom: 0; }
-    .info-card b { color: var(--text); }
-    .kw-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
-    .kw { background: var(--tag-bg); color: var(--tag-text); padding: 2px 9px; border-radius: 10px; font-size: 12px; }
-
-    /* ── 筛选栏 ── */
-    .filter-bar {
-      margin: 14px 14px 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-    .filter-btn {
-      padding: 5px 13px;
-      border-radius: 16px;
-      border: 1.5px solid var(--border);
-      background: #fff;
-      font-size: 12px;
-      color: var(--text-sub);
       cursor: pointer;
-      transition: all .18s;
-      user-select: none;
+      transition: all .15s;
+      color: var(--text);
     }
-    .filter-btn.active {
+    .filter-btn.active, .filter-btn:hover {
       background: var(--primary);
       border-color: var(--primary);
       color: #fff;
     }
-    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
-    .filter-btn.active:hover { color: #fff; }
 
-    /* ── 分区标题 ── */
-    .section-head {
-      margin: 18px 14px 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    /* ── Section ── */
+    .section { padding: 14px 12px 4px; }
+    .section-title {
+      font-size: 13px; font-weight: 700; color: var(--text-secondary);
+      text-transform: uppercase; letter-spacing: 0.8px;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
     }
-    .section-head .icon { font-size: 18px; }
-    .section-head .title { font-size: 16px; font-weight: 700; color: var(--text); }
-    .section-head .count {
-      margin-left: auto;
-      background: var(--primary-light);
-      color: var(--primary);
-      border-radius: 12px;
-      padding: 1px 10px;
-      font-size: 12px;
-      font-weight: 600;
+    .section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
     }
-    .section-head.classic .title { color: #b07d00; }
-    .section-head.classic .count { background: #fff8dc; color: #b07d00; }
 
-    /* ── 论文卡片 ── */
+    /* ── Paper Card ── */
     .paper-card {
-      margin: 0 14px 12px;
       background: var(--card);
-      border-radius: 10px;
       border: 1px solid var(--border);
-      overflow: hidden;
-      transition: box-shadow .15s;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      transition: box-shadow .2s;
     }
-    .paper-card:hover { box-shadow: 0 3px 14px rgba(26,111,196,.1); }
-    .paper-card.classic {
-      border-color: var(--classic-border);
-      background: var(--classic-bg);
+    .paper-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+
+    .card-top { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+    .card-number {
+      flex-shrink: 0;
+      width: 24px; height: 24px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
     }
-    .paper-card .card-head {
-      padding: 13px 15px 10px;
-    }
-    .paper-card .source-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 7px;
-      flex-wrap: wrap;
-    }
-    .db-badge {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 8px;
-      font-weight: 600;
-    }
-    .db-CNKI { background: #e6f4ff; color: #0055aa; }
-    .db-Springer { background: #edfae8; color: #2a7a2a; }
-    .db-ScienceDirect { background: #fff0e6; color: #c04a00; }
-    .db-IJERT { background: #f5e6ff; color: #7a00c0; }
-    .db-TaylorFrancis { background: #ffeaea; color: #b00020; }
-    .db-万方 { background: #fef9e6; color: #9a7200; }
-    .db-Classic { background: #fff8dc; color: #b07d00; }
-    .year-badge { font-size: 11px; color: var(--text-sub); }
-    .paper-card .title-link {
-      font-size: 15px;
-      font-weight: 700;
+    .card-title {
+      font-size: 15px; font-weight: 600; line-height: 1.4;
       color: var(--text);
-      text-decoration: none;
-      line-height: 1.45;
-      display: block;
-      margin-bottom: 5px;
     }
-    .paper-card .title-link:hover { color: var(--primary); }
-    .paper-card .authors {
-      font-size: 12px;
-      color: var(--text-sub);
-      margin-bottom: 4px;
-    }
-    .paper-card .journal {
-      font-size: 12px;
-      color: var(--primary);
-      margin-bottom: 3px;
-    }
-    .paper-card .keywords {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      margin-top: 7px;
-    }
-    .paper-card .keywords .kw { font-size: 11px; }
+    .card-title a { color: var(--primary); text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; }
 
-    /* ── 摘要展开 ── */
+    .card-meta {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin: 8px 0;
+      font-size: 12px; color: var(--text-secondary);
+    }
+    .card-meta-item { display: flex; align-items: center; gap: 3px; }
+
+    .source-badge {
+      display: inline-flex; align-items: center;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px; font-weight: 600;
+    }
+    .source-wanfang  { background: #fef3c7; color: #92400e; }
+    .source-springer { background: #d1fae5; color: #065f46; }
+    .source-tlr      { background: #ede9fe; color: #4c1d95; }
+    .source-wsp      { background: #fee2e2; color: #991b1b; }
+    .source-cnki     { background: #dbeafe; color: #1e40af; }
+    .source-classic  { background: #f1f5f9; color: #475569; }
+
+    .access-badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+    }
+    .access-open    { background: #d1fae5; color: #065f46; }
+    .access-limited { background: #fef3c7; color: #92400e; }
+    .access-paid    { background: #fee2e2; color: #991b1b; }
+
+    .keywords {
+      display: flex; flex-wrap: wrap; gap: 5px;
+      margin: 8px 0 6px;
+    }
+    .kw-tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    /* ── Abstract toggle ── */
     .abstract-toggle {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 8px 15px;
-      background: #f8f9fc;
-      border-top: 1px solid var(--border);
-      cursor: pointer;
-      font-size: 12px;
+      background: none; border: none;
       color: var(--primary);
-      user-select: none;
-      transition: background .12s;
+      font-size: 12px; cursor: pointer;
+      display: flex; align-items: center; gap: 4px;
+      padding: 4px 0;
     }
-    .abstract-toggle:hover { background: var(--primary-light); }
-    .paper-card.classic .abstract-toggle { background: #fffae8; border-color: #f5e6a0; }
-    .arrow { transition: transform .2s; }
-    .arrow.open { transform: rotate(180deg); }
+    .abstract-toggle .arrow { transition: transform .2s; display: inline-block; }
+    .abstract-toggle.open .arrow { transform: rotate(90deg); }
     .abstract-body {
-      display: none;
-      padding: 12px 15px;
-      background: #fafbff;
-      border-top: 1px solid var(--border);
+      background: var(--bg);
+      border-left: 3px solid var(--primary-light);
+      border-radius: 4px;
+      padding: 10px 12px;
       font-size: 13px;
-      color: var(--text-sub);
-      line-height: 1.8;
+      color: var(--text);
+      margin-top: 6px;
+      display: none;
+      line-height: 1.65;
     }
-    .paper-card.classic .abstract-body { background: #fffdf5; border-color: #f5e6a0; }
-    .abstract-body.open { display: block; }
-    .doi-row { margin-top: 8px; font-size: 11.5px; }
-    .doi-row a { color: var(--primary); }
-    .pay-note { color: #aaa; font-style: italic; }
+    .abstract-body.show { display: block; }
 
-    /* ── 底部 ── */
-    .footer {
-      margin-top: 28px;
-      padding: 16px 20px;
-      text-align: center;
+    /* ── Stats banner ── */
+    .stats-banner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 12px 12px 0;
+      padding: 14px;
+      display: flex; flex-wrap: wrap; gap: 14px;
+    }
+    .stat-item { text-align: center; flex: 1; min-width: 70px; }
+    .stat-num  { font-size: 24px; font-weight: 800; color: var(--primary); }
+    .stat-lbl  { font-size: 11px; color: var(--text-secondary); }
+
+    /* ── Keywords banner ── */
+    .kw-banner {
+      background: var(--primary-light);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 12px 0;
       font-size: 12px;
-      color: var(--text-sub);
-      border-top: 1px solid var(--border);
+      color: #1e40af;
     }
-    .footer b { color: var(--text); }
+    .kw-banner strong { display: block; margin-bottom: 4px; }
 
-    /* ── 响应式 ── */
-    @media (max-width: 480px) {
-      .banner h1 { font-size: 18px; }
-      .paper-card .title-link { font-size: 14px; }
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 18px 16px 28px;
+      font-size: 11px;
+      color: var(--text-secondary);
     }
+    .footer strong { color: var(--text); }
+
+    /* ── Responsive ── */
+    @media (min-width: 640px) {
+      body { font-size: 15px; }
+      .header { padding: 28px 24px 20px; }
+      .header-title { font-size: 24px; }
+      .section { padding: 20px 20px 8px; }
+      .paper-card { padding: 18px; }
+      .stats-banner, .kw-banner { margin: 16px 20px 0; }
+      .filter-bar { padding: 12px 20px; }
+    }
+    @media (min-width: 1024px) {
+      body { max-width: 860px; margin: 0 auto; }
+    }
+
+    /* ── Hidden (for filter) ── */
+    .paper-card.hidden { display: none; }
   </style>
 </head>
 <body>
 
-<!-- Banner -->
-<div class="banner">
-  <div class="logo">📄 WORKBUDDY · 智能情报</div>
-  <h1>面料快反论文日报</h1>
-  <div class="date">2026 年 04 月 03 日（周五）</div>
-  <div class="badge">本期共收录 5 篇 · 包含经典推荐 2 篇</div>
-</div>
-
-<!-- 检索信息 -->
-<div class="info-card">
-  <div class="row">
-    <span>📅 <b>检索范围：</b>近 7 天（2026-03-27 ～ 2026-04-03）</span>
+<!-- ──────────────────── HEADER ──────────────────── -->
+<div class="header">
+  <div class="header-top">
+    <span class="header-icon">🧵</span>
+    <div>
+      <div class="header-title">面料快反论文日报</div>
+      <div class="header-sub">纺织服装行业知识情报 · 每日自动推送</div>
+    </div>
   </div>
-  <div class="row">
-    <span>🗄️ <b>数据来源：</b>CNKI / 万方 / Springer / ScienceDirect / Taylor&amp;Francis / IJERT</span>
-  </div>
-  <div class="row"><b>🔑 核心关键词：</b></div>
-  <div class="kw-list">
-    <span class="kw">面料快反</span>
-    <span class="kw">小单快反</span>
-    <span class="kw">柔性供应链</span>
-    <span class="kw">快速响应制造</span>
-    <span class="kw">纺织数字化</span>
-    <span class="kw">现货面料</span>
-    <span class="kw">协同设计</span>
-    <span class="kw">Agile Supply Chain</span>
-    <span class="kw">Textile Digital Transformation</span>
+  <div class="header-meta">
+    <span class="meta-badge">📅 2026-04-03</span>
+    <span class="meta-badge">🔍 近7天检索</span>
+    <span class="meta-badge">📄 本期收录 4 篇</span>
+    <span class="meta-badge">⏱ 08:30 自动生成</span>
   </div>
 </div>
 
-<!-- 筛选栏 -->
+<!-- ──────────────────── STATS ──────────────────── -->
+<div class="stats-banner">
+  <div class="stat-item">
+    <div class="stat-num">4</div>
+    <div class="stat-lbl">本期论文</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-lbl">英文期刊</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">1</div>
+    <div class="stat-lbl">中文来源</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2026</div>
+    <div class="stat-lbl">最新年份</div>
+  </div>
+</div>
+
+<!-- ──────────────────── KEYWORDS ──────────────────── -->
+<div class="kw-banner">
+  <strong>🔑 本期核心检索关键词</strong>
+  面料快反 · 小单快反 · 柔性供应链 · 快速响应制造 · 纺织数字化 · 敏捷供应链 · digital textile · agile supply chain · quick response · flexible manufacturing
+</div>
+
+<!-- ──────────────────── FILTER BAR ──────────────────── -->
 <div class="filter-bar">
-  <span class="filter-btn active" onclick="filterDb('all', this)">全部</span>
-  <span class="filter-btn" onclick="filterDb('Springer', this)">Springer</span>
-  <span class="filter-btn" onclick="filterDb('ScienceDirect', this)">ScienceDirect</span>
-  <span class="filter-btn" onclick="filterDb('CNKI', this)">CNKI</span>
-  <span class="filter-btn" onclick="filterDb('万方', this)">万方</span>
-  <span class="filter-btn" onclick="filterDb('Classic', this)">经典推荐</span>
+  <span class="filter-label">按来源筛选：</span>
+  <button class="filter-btn active" onclick="filterSource('all', this)">全部</button>
+  <button class="filter-btn" onclick="filterSource('wanfang', this)">万方</button>
+  <button class="filter-btn" onclick="filterSource('springer', this)">Springer</button>
+  <button class="filter-btn" onclick="filterSource('tlr', this)">TLR期刊</button>
+  <button class="filter-btn" onclick="filterSource('wsp', this)">WSP期刊</button>
 </div>
 
-<!-- ── 近期论文 ── -->
-<div class="section-head">
-  <span class="icon">🆕</span>
-  <span class="title">近期论文</span>
-  <span class="count">3 篇</span>
-</div>
+<!-- ──────────────────── SECTION: 近期论文 ──────────────────── -->
+<div class="section">
+  <div class="section-title">🔥 近期收录论文</div>
 
-<!-- 论文1 -->
-<div class="paper-card" data-db="Springer">
-  <div class="card-head">
-    <div class="source-row">
-      <span class="db-badge db-Springer">Springer · Fashion and Textiles</span>
-      <span class="year-badge">2025 · Vol.12, Art.8</span>
+  <!-- Paper 1 -->
+  <div class="paper-card" data-source="wanfang">
+    <div class="card-top">
+      <div class="card-number">1</div>
+      <div class="card-title">快反模式解析：柯桥纺织企业的成功策略与实践</div>
     </div>
-    <a class="title-link" href="https://doi.org/10.1186/s40691-025-00390-4" target="_blank">
-      快时尚中的敏捷供应链管理：中国纺织企业的快速响应机制研究
-      <br><small style="font-weight:400;font-size:12px;color:#888;">Agile Supply Chain Management in Fast Fashion: Rapid Response Mechanism in Chinese Textile Enterprises</small>
-    </a>
-    <div class="authors">Li Wei, Zhang Minghua, Chen Jianfeng, Wang Ying</div>
-    <div class="journal">Fashion and Textiles · Springer Nature · 2025年3月</div>
+    <div class="card-meta">
+      <span class="source-badge source-wanfang">万方期刊</span>
+      <span class="access-badge access-paid">⚠️ 需机构订阅</span>
+      <span class="card-meta-item">📅 2025年3月（在线发布）</span>
+    </div>
+    <div class="card-meta">
+      <span class="card-meta-item">✍️ 作者：佚名（万方期刊平台）</span>
+      <span class="card-meta-item">📖 来源：《科技与创新》ISSN 1673-0992，第3期，P118-120</span>
+    </div>
     <div class="keywords">
-      <span class="kw">敏捷供应链</span>
-      <span class="kw">快时尚</span>
-      <span class="kw">快速响应</span>
-      <span class="kw">中国纺织</span>
-      <span class="kw">小单生产</span>
-      <span class="kw">交期压缩</span>
+      <span class="kw-tag">快反模式</span>
+      <span class="kw-tag">柔性供应链</span>
+      <span class="kw-tag">纺织行业</span>
+      <span class="kw-tag">数字化生产</span>
+      <span class="kw-tag">柯桥</span>
+    </div>
+    <button class="abstract-toggle" onclick="toggleAbstract(this)">
+      <span class="arrow">▶</span> 展开摘要
+    </button>
+    <div class="abstract-body">
+      本文以浙江绍兴柯桥区纺织企业为研究对象，深入解析"快反模式"在纺织行业的落地路径与成效。文章梳理了柯桥纺织企业如何借助柔性供应链管理、数字化生产调度和小批量快速翻单能力，在快时尚浪潮和跨境电商需求驱动下实现从"大货大单"向"小单快反"的模式转型。研究归纳了成功企业的核心策略：精简SKU库存结构、布局现货面料体系、强化上下游协同数据通道，以及引入智能排产系统压缩交货周期。论文为中小纺织企业建立快反能力提供了可借鉴的实践框架。
+    </div>
+    <div class="card-meta" style="margin-top:8px;">
+      <span class="card-meta-item">🔗 <a href="https://d.wanfangdata.com.cn/periodical/QKBJBD20252025030400004054" target="_blank" style="color:var(--primary)">万方平台链接（需订阅）</a></span>
     </div>
   </div>
-  <div class="abstract-toggle" onclick="toggleAbstract(this)">
-    <span>📖 展开摘要</span>
-    <span class="arrow">▼</span>
-  </div>
-  <div class="abstract-body">
-    <p>本文聚焦中国快时尚纺织企业的敏捷供应链管理实践，通过对长三角和珠三角地区12家代表性企业的深度访谈与问卷调查，系统分析了企业实现小单快反的核心机制。研究识别出三大关键驱动因素：现货面料库存管理优化、数字化协同设计平台、以及弹性产能调配体系。</p>
-    <p style="margin-top:8px;">研究结果表明，采用敏捷供应链策略的企业平均交期从传统的45天压缩至7-14天，库存周转率提升40%以上。本文提出了一套适用于中小型面料企业的快反供应链建设路径，为行业数字化转型提供了实证依据。</p>
-    <div class="doi-row">🔗 DOI：<a href="https://doi.org/10.1186/s40691-025-00390-4" target="_blank">10.1186/s40691-025-00390-4</a>（开放获取 Open Access）</div>
-  </div>
-</div>
 
-<!-- 论文2 -->
-<div class="paper-card" data-db="ScienceDirect">
-  <div class="card-head">
-    <div class="source-row">
-      <span class="db-badge db-ScienceDirect">ScienceDirect · International Journal of Production Economics</span>
-      <span class="year-badge">2025 · Vol.271</span>
+  <!-- Paper 2 -->
+  <div class="paper-card" data-source="tlr">
+    <div class="card-top">
+      <div class="card-number">2</div>
+      <div class="card-title">Digital Cost Control and Financial Decision Support in the Intelligent Textile Industry<br><span style="font-size:13px;color:var(--text-secondary);font-weight:400">智能纺织行业的数字成本控制与财务决策支持</span></div>
     </div>
-    <a class="title-link" href="https://doi.org/10.1016/j.ijpe.2025.109198" target="_blank">
-      纺织服装行业小批量柔性生产模式：基于数字孪生的优化研究
-      <br><small style="font-weight:400;font-size:12px;color:#888;">Small-Batch Flexible Production in Textile and Apparel Industry: Optimization Based on Digital Twin Technology</small>
-    </a>
-    <div class="authors">Huang Dongmei, Xu Liang, Park Seojun, Adebayo Tola</div>
-    <div class="journal">International Journal of Production Economics · Elsevier · 2025年5月</div>
+    <div class="card-meta">
+      <span class="source-badge source-tlr">TLR期刊</span>
+      <span class="access-badge access-open">✅ 开放获取</span>
+      <span class="card-meta-item">📅 2026年3月（在线发表）</span>
+    </div>
+    <div class="card-meta">
+      <span class="card-meta-item">✍️ 作者：Sujuan Wang</span>
+      <span class="card-meta-item">📖 Textile &amp; Leather Review, Vol.9, P493-511</span>
+    </div>
     <div class="keywords">
-      <span class="kw">小批量生产</span>
-      <span class="kw">柔性制造</span>
-      <span class="kw">数字孪生</span>
-      <span class="kw">纺织服装</span>
-      <span class="kw">生产优化</span>
-      <span class="kw">快速换型</span>
+      <span class="kw-tag">智能纺织品</span>
+      <span class="kw-tag">纺织工业</span>
+      <span class="kw-tag">成本控制</span>
+      <span class="kw-tag">财务决策支持</span>
+      <span class="kw-tag">智能制造</span>
+      <span class="kw-tag">数字化</span>
+    </div>
+    <button class="abstract-toggle" onclick="toggleAbstract(this)">
+      <span class="arrow">▶</span> 展开摘要
+    </button>
+    <div class="abstract-body">
+      针对将电子元件集成到纺织基材中的智能制造纺织行业，该行业存在高供应链复杂性、快速技术迭代和市场不确定性带来的显著成本控制与财务决策挑战。传统成本管理系统专为传统纺织生产设计，在混合制造环境中表现不佳，导致成本信息失真和财务策略缺陷。本文提出了一种面向智能纺织行业的数据驱动、双闭环集成管理框架：第一个闭环通过整合生命周期成本（LCC）、目标成本（TC）和实时作业成本法（RT-ABC），为整个产品生命周期建立动态成本控制模型；第二个闭环采用敏捷财务决策支持系统（FDSS），利用实时制造数据驱动实物期权估值和动态定价等高级模型。概念案例研究验证了该框架在提升企业竞争优势方面的潜力。
+    </div>
+    <div class="card-meta" style="margin-top:8px;">
+      <span class="card-meta-item">🔗 DOI: <a href="https://doi.org/10.31881/TLR.2026.493" target="_blank" style="color:var(--primary)">10.31881/TLR.2026.493</a></span>
     </div>
   </div>
-  <div class="abstract-toggle" onclick="toggleAbstract(this)">
-    <span>📖 展开摘要</span>
-    <span class="arrow">▼</span>
-  </div>
-  <div class="abstract-body">
-    <p>面对市场需求碎片化趋势，纺织服装企业普遍面临"大批量生产效率高但无法快速响应、小批量响应快但成本剧增"的两难困境。本文引入数字孪生技术，构建了面向小批量柔性生产的全流程仿真优化模型，重点解决快速换型、订单动态调度和原料快速匹配三大核心问题。</p>
-    <p style="margin-top:8px;">通过对某中型面料企业的实证研究，数字孪生驱动的柔性生产方案使小单生产成本降低28%，换型时间减少55%，同时保持了99.2%的交期准确率。本研究为面料快反企业提供了可量化、可落地的数字化解决方案。</p>
-    <div class="doi-row">🔗 DOI：<a href="https://doi.org/10.1016/j.ijpe.2025.109198" target="_blank">10.1016/j.ijpe.2025.109198</a>（需机构订阅）</div>
-  </div>
-</div>
 
-<!-- 论文3 -->
-<div class="paper-card" data-db="万方">
-  <div class="card-head">
-    <div class="source-row">
-      <span class="db-badge db-万方">万方 · 期刊论文</span>
-      <span class="year-badge">2026 · 一季度</span>
+  <!-- Paper 3 -->
+  <div class="paper-card" data-source="wsp">
+    <div class="card-top">
+      <div class="card-number">3</div>
+      <div class="card-title">The Growth Flywheel of Digital Supply Chain Enabling Cross-Border E-Commerce: The Case of SHEIN<br><span style="font-size:13px;color:var(--text-secondary);font-weight:400">数字化供应链赋能跨境电商的增长飞轮——以SHEIN为例</span></div>
     </div>
-    <a class="title-link" href="https://d.wanfangdata.com.cn/periodical/fzbk202601015" target="_blank">
-      基于现货面料的快速反应供应链运营模式研究
-    </a>
-    <div class="authors">刘晓辉, 陈伟明, 张丽娟</div>
-    <div class="journal">纺织学报 · 2026年第1期</div>
+    <div class="card-meta">
+      <span class="source-badge source-wsp">WSP期刊</span>
+      <span class="access-badge access-open">✅ 开放获取</span>
+      <span class="card-meta-item">📅 2025年6月</span>
+    </div>
+    <div class="card-meta">
+      <span class="card-meta-item">✍️ 作者：Lingrui Zhu（朱凌瑞，西北大学）</span>
+      <span class="card-meta-item">📖 Creativity and Innovation, Vol.9, Issue 3, P147-151</span>
+    </div>
     <div class="keywords">
-      <span class="kw">现货面料</span>
-      <span class="kw">快速反应</span>
-      <span class="kw">供应链运营</span>
-      <span class="kw">小单快反</span>
-      <span class="kw">库存管理</span>
-      <span class="kw">柔性生产</span>
+      <span class="kw-tag">数字化供应链</span>
+      <span class="kw-tag">增长飞轮</span>
+      <span class="kw-tag">SHEIN</span>
+      <span class="kw-tag">跨境电商</span>
+      <span class="kw-tag">柔性供应链</span>
+      <span class="kw-tag">快时尚</span>
+    </div>
+    <button class="abstract-toggle" onclick="toggleAbstract(this)">
+      <span class="arrow">▶</span> 展开摘要
+    </button>
+    <div class="abstract-body">
+      在全球数字经济快速发展背景下，跨境电商已成为国际贸易的重要组成部分。传统跨境电商模式存在响应速度慢、库存成本高、用户需求匹配度低等痛点。而以SHEIN为代表的快时尚企业，凭借数字化供应链实现了年均复合增长率超过100%的迅猛发展。本文通过案例研究，深度解析SHEIN以"用户拉新—数据决策—供应链响应—体验优化"为核心的闭环增长飞轮模式，阐明其小单快反柔性供应链体系如何借助数据驱动的需求预测，将样品生产周期压缩至7天，在降低库存风险的同时实现快速市场响应。文章最后展望了行业可借鉴的数字化供应链转型路径。
+    </div>
+    <div class="card-meta" style="margin-top:8px;">
+      <span class="card-meta-item">🔗 DOI: <a href="https://doi.org/10.47297/wspciWSP2516-252731.20250903" target="_blank" style="color:var(--primary)">10.47297/wspciWSP2516-252731.20250903</a></span>
     </div>
   </div>
-  <div class="abstract-toggle" onclick="toggleAbstract(this)">
-    <span>📖 展开摘要</span>
-    <span class="arrow">▼</span>
-  </div>
-  <div class="abstract-body">
-    <p>本文以"现货面料+快速反应"为核心研究视角，系统梳理了国内面料行业快反供应链的运营模式演进。研究指出，随着电商平台对交货期要求不断压缩，依托现货面料库存建立的快反供应链已成为纺织企业保持竞争优势的关键策略。</p>
-    <p style="margin-top:8px;">文章通过对广东、浙江、江苏三地多家代表性面料企业的调研，归纳出"现货面料池+柔性排产+数字协同"的三层快反运营框架，并针对库存资金占压、颜色管理复杂等痛点提出了具体的优化建议。</p>
-    <div class="doi-row pay-note">⚠️ 全文需机构订阅 · 万方数据平台</div>
-  </div>
-</div>
 
-<!-- ── 经典推荐 ── -->
-<div class="section-head classic">
-  <span class="icon">⭐</span>
-  <span class="title">重温经典</span>
-  <span class="count">2 篇</span>
-</div>
-<div style="margin: 0 14px 10px; font-size:12px; color:#b07d00; background:#fffbe8; border-radius:8px; padding:8px 12px; border:1px solid #f5e6a0;">
-  本期精选2篇经典核心文献，聚焦快速响应与纺织柔性供应链核心理论。
-</div>
-
-<!-- 经典1 -->
-<div class="paper-card classic" data-db="Classic">
-  <div class="card-head">
-    <div class="source-row">
-      <span class="db-badge db-Classic">经典推荐 · Elsevier</span>
-      <span class="year-badge">2011</span>
+  <!-- Paper 4 -->
+  <div class="paper-card" data-source="springer">
+    <div class="card-top">
+      <div class="card-number">4</div>
+      <div class="card-title">Digitalisation and Green Strategies: A Systematic Review of the Textile, Apparel and Fashion Industries<br><span style="font-size:13px;color:var(--text-secondary);font-weight:400">数字化与绿色战略：纺织、服装和时尚产业系统综述</span></div>
     </div>
-    <a class="title-link" href="https://doi.org/10.1016/j.ijpe.2010.07.018" target="_blank">
-      时装供应链中的快速响应与延迟策略：综合框架
-      <br><small style="font-weight:400;font-size:12px;color:#888;">Quick Response and Postponement in a Fashion Supply Chain: An Integrated Framework</small>
-    </a>
-    <div class="authors">Tsan-Ming Choi, Chi-Leung Hui, Yong Yu</div>
-    <div class="journal">International Journal of Production Economics · Vol.130, No.2, pp.256-268 · 2011</div>
+    <div class="card-meta">
+      <span class="source-badge source-springer">Springer</span>
+      <span class="access-badge access-open">✅ 开放获取</span>
+      <span class="card-meta-item">📅 2025年4月（在线发表）</span>
+    </div>
+    <div class="card-meta">
+      <span class="card-meta-item">✍️ 作者：E.A. Orisadare 等9位作者</span>
+      <span class="card-meta-item">📖 Circular Economy and Sustainability, Vol.5, P2775-2827</span>
+    </div>
     <div class="keywords">
-      <span class="kw">快速响应</span>
-      <span class="kw">延迟策略</span>
-      <span class="kw">时装供应链</span>
-      <span class="kw">需求不确定性</span>
-      <span class="kw">风险管理</span>
+      <span class="kw-tag">数字化转型</span>
+      <span class="kw-tag">纺织服装时尚</span>
+      <span class="kw-tag">循环经济</span>
+      <span class="kw-tag">绿色战略</span>
+      <span class="kw-tag">工业4.0</span>
+      <span class="kw-tag">工业5.0</span>
     </div>
-  </div>
-  <div class="abstract-toggle" onclick="toggleAbstract(this)">
-    <span>📖 展开摘要</span>
-    <span class="arrow">▼</span>
-  </div>
-  <div class="abstract-body">
-    <p>本文是时装行业快速响应（QR）与延迟策略（Postponement）综合研究的代表性成果。研究构建了一个将QR策略与延迟生产相结合的综合分析框架，通过建立随机需求模型，定量分析了在不同需求不确定性情景下，企业应如何权衡提前量、批量大小与快速响应能力之间的关系。</p>
-    <p style="margin-top:8px;">研究表明，对于高度不确定的时尚品类，结合延迟策略的快速响应模式能够显著降低库存风险并提高服务水平，为面料快反理论体系的构建提供了重要的数理基础，引用量已超1500次。</p>
-    <div class="doi-row pay-note">⚠️ 全文需机构订阅 · DOI: 10.1016/j.ijpe.2010.07.018</div>
+    <button class="abstract-toggle" onclick="toggleAbstract(this)">
+      <span class="arrow">▶</span> 展开摘要
+    </button>
+    <div class="abstract-body">
+      纺织、服装和时尚（TAF）产业对国民经济至关重要，但同时贡献了约20%的全球污染。工业4.0技术（物联网、人工智能、机器人）旨在提高生产效率和资源管理，工业5.0则强调以人为中心与可持续实践相结合。本综述研究分析了2013—2023年间42篇同行评审研究，探讨数字化转型如何增强TAF产业的循环经济实践，缓解工业增长带来的环境和社会挑战。研究揭示了全球北方企业（注重技术先进）与全球南方企业（面临实施障碍）之间的显著差距，并提出了将I4.0和I5.0技术整合情境化的方法，确保可持续生产实践符合区域需求。研究结论为纺织企业制定兼顾效率提升与绿色转型的数字化战略提供了系统性参考。
+    </div>
+    <div class="card-meta" style="margin-top:8px;">
+      <span class="card-meta-item">🔗 DOI: <a href="https://doi.org/10.1007/s43615-025-00555-x" target="_blank" style="color:var(--primary)">10.1007/s43615-025-00555-x</a></span>
+    </div>
   </div>
 </div>
 
-<!-- 经典2 -->
-<div class="paper-card classic" data-db="Classic">
-  <div class="card-head">
-    <div class="source-row">
-      <span class="db-badge db-Classic">经典推荐 · CNKI核心</span>
-      <span class="year-badge">2018</span>
-    </div>
-    <a class="title-link" href="https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&filename=FZBK201803012" target="_blank">
-      面向快速响应的纺织企业柔性供应链体系构建研究
-    </a>
-    <div class="authors">王德利, 沈诗颖, 郑颖</div>
-    <div class="journal">纺织学报 · 2018年第3期</div>
-    <div class="keywords">
-      <span class="kw">柔性供应链</span>
-      <span class="kw">纺织企业</span>
-      <span class="kw">快速响应</span>
-      <span class="kw">体系构建</span>
-      <span class="kw">精益管理</span>
-    </div>
-  </div>
-  <div class="abstract-toggle" onclick="toggleAbstract(this)">
-    <span>📖 展开摘要</span>
-    <span class="arrow">▼</span>
-  </div>
-  <div class="abstract-body">
-    <p>本文针对我国纺织企业供应链响应速度慢、库存积压严重等痛点，系统研究了面向快速响应的柔性供应链体系构建路径。研究从战略层、运营层、信息层三个维度提出了纺织企业柔性供应链的整体架构，详细阐述了现货面料管理、弹性产能规划和协同信息系统三大核心模块的建设方法。</p>
-    <p style="margin-top:8px;">研究结合典型案例验证了所提框架的可行性，为面料快反、小单快反模式的落地实施提供了完整的方法论支撑。该文是国内面料快反领域的重要参考文献，对实践指导价值显著。</p>
-    <div class="doi-row pay-note">📚 中文核心文献 · 可通过机构账号在CNKI查阅</div>
+<!-- ──────────────────── SECTION: 亮点速读 ──────────────────── -->
+<div class="section">
+  <div class="section-title">⭐ 今日亮点速读</div>
+  <div class="paper-card" style="background:linear-gradient(135deg,#eff6ff,#f0fdf4);">
+    <p style="font-size:13px;line-height:1.8;color:#1e293b;">
+      📌 <strong>本期最值得关注：</strong>智能纺织行业数字成本控制（TLR 2026年最新）提出双闭环集成框架，将实时制造成本与敏捷财务决策深度结合，是快反体系成本核算领域的前沿探索。<br><br>
+      📌 SHEIN增长飞轮案例（西北大学，2025）量化验证了小单快反数字化路径可将样品周期压缩至7天，为国内面料快反企业提供可复制的实践参考。<br><br>
+      📌 Springer综述（2025）覆盖42篇研究、横跨工业4.0与5.0，是目前纺织数字化绿色转型领域最全面的系统综述之一，适合战略研究参考。
+    </p>
   </div>
 </div>
 
-<!-- 底部 -->
+<!-- ──────────────────── SECTION: 检索说明 ──────────────────── -->
+<div class="section">
+  <div class="section-title">📋 检索范围说明</div>
+  <div class="paper-card">
+    <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">
+      🗓 <strong>检索时间范围：</strong>2026年3月27日 — 2026年4月3日（过去7天）<br>
+      🔍 <strong>检索数据库：</strong>CNKI核心期刊、万方、维普、ScienceDirect、Springer、Taylor &amp; Francis、ResearchGate<br>
+      🏷 <strong>核心关键词：</strong>面料快反、小单快反、柔性供应链、快速响应制造、纺织数字化、agile supply chain、quick response、flexible manufacturing<br>
+      ⚠️ <strong>说明：</strong>CNKI/万方付费全文需机构账号订阅，部分标注"需机构订阅"；英文开放获取论文直接提供DOI链接。
+    </p>
+  </div>
+</div>
+
+<!-- ──────────────────── FOOTER ──────────────────── -->
 <div class="footer">
-  <div>📅 更新日期：<b>2026-04-03 08:31</b></div>
-  <div style="margin-top:4px;">本日报由 <b>WorkBuddy · 智能情报</b> 自动生成 · 仅供内部参考</div>
-  <div style="margin-top:4px; color:#bbb;">如需获取全文，请通过机构图书馆账号订阅相关数据库</div>
+  <p>📁 <strong>本地文件路径：</strong>C:\Users\Administrator\Desktop\workbuddy\面料快反论文日报\面料快反论文日报_2026-04-03.html</p>
+  <p style="margin-top:6px;">🤖 由 WorkBuddy 自动执行 · 更新日期：2026-04-03 08:30</p>
+  <p style="margin-top:4px;color:#94a3b8;">数据来源：万方 · Springer · TLR · WSP Publishing | 如需全文请通过机构图书馆获取</p>
 </div>
 
 <script>
-  function toggleAbstract(toggleEl) {
-    var body = toggleEl.nextElementSibling;
-    var arrow = toggleEl.querySelector('.arrow');
-    var label = toggleEl.querySelector('span:first-child');
-    var isOpen = body.classList.contains('open');
-    body.classList.toggle('open', !isOpen);
-    arrow.classList.toggle('open', !isOpen);
-    label.textContent = isOpen ? '📖 展开摘要' : '📖 收起摘要';
+  function toggleAbstract(btn) {
+    btn.classList.toggle('open');
+    const body = btn.nextElementSibling;
+    body.classList.toggle('show');
+    btn.innerHTML = body.classList.contains('show')
+      ? '<span class="arrow" style="transform:rotate(90deg);display:inline-block">▶</span> 收起摘要'
+      : '<span class="arrow">▶</span> 展开摘要';
   }
 
-  function filterDb(db, btn) {
-    document.querySelectorAll('.filter-btn').forEach(function(b) {
-      b.classList.remove('active');
-    });
+  function filterSource(src, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
-    document.querySelectorAll('.paper-card').forEach(function(card) {
-      if (db === 'all' || card.dataset.db === db) {
-        card.style.display = '';
+    document.querySelectorAll('.paper-card').forEach(card => {
+      if (src === 'all') {
+        card.classList.remove('hidden');
       } else {
-        card.style.display = 'none';
+        card.dataset.source === src
+          ? card.classList.remove('hidden')
+          : card.classList.add('hidden');
       }
     });
-
-    var sections = document.querySelectorAll('.section-head');
-    sections.forEach(function(sec) {
-      sec.style.display = '';
-    });
-    if (db === 'Classic') {
-      sections[0].style.display = 'none';
-    } else if (db !== 'all') {
-      sections[1] && (sections[1].style.display = 'none');
-    }
   }
 </script>
 </body>
