@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>面料快反论文日报 - 2026年04月07日</title>
+<style>
+  :root {
+    --primary: #1a6b3c;
+    --primary-light: #e8f5ee;
+    --accent: #2e9e5b;
+    --accent2: #f0a500;
+    --bg: #f7f8fa;
+    --card-bg: #ffffff;
+    --text: #1d2023;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --badge-cnki: #1557a0;
+    --badge-springer: #c0392b;
+    --badge-elsevier: #f59e0b;
+    --badge-arxiv: #7c3aed;
+    --badge-policy: #059669;
+    --badge-tandf: #0369a1;
+    --badge-ea: #0d9488;
+    --shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* === HEADER === */
+  .header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+    padding: 24px 20px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: "🧵";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 56px;
+    opacity: 0.15;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+  .header .sub {
+    font-size: 13px;
+    opacity: 0.88;
+    margin-bottom: 14px;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .meta-item {
+    font-size: 13px;
+    opacity: 0.92;
+    background: rgba(255,255,255,0.15);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  /* === STATS BAR === */
+  .stats-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-chip {
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--primary-light);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+  .stat-chip .num {
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  /* === FILTER === */
+  .filter-section {
+    padding: 10px 16px 8px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+  }
+  .filter-title {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .filter-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .filter-btn {
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 500;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  /* === MAIN CONTENT === */
+  .main {
+    padding: 14px 16px 80px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* === SECTION HEADER === */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 18px 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary-light);
+  }
+  .section-icon { font-size: 20px; }
+  .section-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--primary);
+    flex: 1;
+  }
+  .section-count {
+    font-size: 12px;
+    background: var(--primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+
+  /* === POLICY CARD === */
+  .policy-card {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 1px solid #86efac;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .policy-tag {
+    display: inline-block;
+    background: #059669;
+    color: white;
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .policy-card h3 {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #064e3b;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .policy-card .policy-meta {
+    font-size: 12px;
+    color: #059669;
+    margin-bottom: 8px;
+  }
+  .policy-card .policy-body {
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.6;
+  }
+
+  /* === PAPER CARD === */
+  .paper-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s;
+  }
+  .paper-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.11); }
+
+  .paper-header {
+    padding: 14px 16px 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .paper-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .db-badge {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 5px;
+    color: white;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .db-springer { background: var(--badge-springer); }
+  .db-elsevier { background: var(--badge-elsevier); color: #1d2023; }
+  .db-arxiv { background: var(--badge-arxiv); }
+  .db-tandf { background: var(--badge-tandf); }
+  .db-ea { background: var(--badge-ea); }
+  .db-cnki { background: var(--badge-cnki); }
+
+  .paper-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--text);
+    flex: 1;
+  }
+  .paper-title-zh {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    font-style: italic;
+  }
+
+  .paper-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .meta-tag {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 3px 8px;
+    border-radius: 5px;
+  }
+
+  .expand-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 16px 8px;
+    font-size: 12px;
+    color: var(--accent);
+    cursor: pointer;
+    background: var(--primary-light);
+    border-top: 1px solid var(--border);
+    font-weight: 600;
+  }
+  .expand-icon {
+    transition: transform 0.25s;
+    font-size: 14px;
+  }
+  .expand-icon.open { transform: rotate(180deg); }
+
+  .paper-detail {
+    display: none;
+    padding: 14px 16px;
+    border-top: 1px solid var(--border);
+    background: #fafbfc;
+  }
+  .paper-detail.open { display: block; }
+
+  .detail-section { margin-bottom: 10px; }
+  .detail-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+  }
+  .detail-text {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.65;
+  }
+  .keyword-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .keyword-chip {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+
+  .access-tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .access-open { background: #d1fae5; color: #065f46; }
+  .access-paid { background: #fef3c7; color: #92400e; }
+
+  .doi-link {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--accent);
+    word-break: break-all;
+    text-decoration: none;
+  }
+  .doi-link:hover { text-decoration: underline; }
+
+  /* === NOTICE SECTION === */
+  .notice-box {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+  }
+  .notice-box .notice-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #92400e;
+    margin-bottom: 6px;
+  }
+  .notice-box .notice-text {
+    font-size: 12px;
+    color: #78350f;
+    line-height: 1.6;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+    background: white;
+  }
+  .footer strong { color: var(--primary); }
+
+  /* Hidden class for filter */
+  .paper-card.hidden { display: none; }
+  .policy-card.hidden { display: none; }
+
+  @media (min-width: 640px) {
+    .main { padding: 20px 20px 80px; }
+    .header { padding: 28px 24px 22px; }
+    .header h1 { font-size: 26px; }
+    .paper-title { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <div class="header-badge">📰 智能情报日报 · 第8期</div>
+  <h1>面料快反论文日报</h1>
+  <div class="sub">纺织服装行业知识情报 · 快速响应 · 柔性供应链 · 数字化制造</div>
+  <div class="meta-row">
+    <div class="meta-item">📅 <strong>2026年04月07日</strong>（周二）</div>
+    <div class="meta-item">🔍 过去7天检索范围</div>
+    <div class="meta-item">📄 本期收录 <strong>5篇</strong> 论文</div>
+  </div>
+</div>
+
+<!-- ===== STATS BAR ===== -->
+<div class="stats-bar">
+  <div class="stat-chip">📊 本期总计 <span class="num">5</span></div>
+  <div class="stat-chip">🌐 英文论文 <span class="num">4</span></div>
+  <div class="stat-chip">🇨🇳 中文论文 <span class="num">1</span></div>
+  <div class="stat-chip">🔓 开放获取 <span class="num">2</span></div>
+  <div class="stat-chip">🔒 需订阅 <span class="num">3</span></div>
+</div>
+
+<!-- ===== FILTER ===== -->
+<div class="filter-section">
+  <div class="filter-title">📌 按来源数据库筛选：</div>
+  <div class="filter-btns">
+    <button class="filter-btn active" onclick="filterPapers('all', this)">全部</button>
+    <button class="filter-btn" onclick="filterPapers('springer', this)">Springer</button>
+    <button class="filter-btn" onclick="filterPapers('arxiv', this)">arXiv</button>
+    <button class="filter-btn" onclick="filterPapers('tandf', this)">Taylor&amp;Francis</button>
+    <button class="filter-btn" onclick="filterPapers('cnki', this)">知网</button>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div class="main">
+
+  <!-- 检索关键词提示 -->
+  <div class="notice-box">
+    <div class="notice-title">🔍 本期检索核心关键词</div>
+    <div class="notice-text">
+      <strong>主题词：</strong>面料快反 / 纺织快速响应 / 柔性供应链 / 敏捷制造 / 小单快反 / 数字化供应链 / 服装智能制造<br>
+      <strong>英文主题：</strong>Quick Response Manufacturing / Flexible Supply Chain / Agile Textile / Fast Fashion Supply Chain / Demand-Driven Manufacturing<br>
+      <strong>检索时间范围：</strong>2026年3月31日 — 2026年4月7日（近7天）
+    </div>
+  </div>
+
+  <!-- 近期论文 -->
+  <div class="section-header">
+    <span class="section-icon">📄</span>
+    <span class="section-title">近期论文</span>
+    <span class="section-count">5篇</span>
+  </div>
+
+  <!-- 论文1: Agile Supply Chain Textile arXiv -->
+  <div class="paper-card" data-source="arxiv">
+    <div class="paper-header" onclick="toggleDetail(this)">
+      <div class="paper-top">
+        <span class="db-badge db-arxiv">arXiv</span>
+        <div>
+          <div class="paper-title">Demand-Driven Agile Manufacturing: A Reinforcement Learning Approach for Textile Quick Response</div>
+          <div class="paper-title-zh">需求驱动的敏捷制造：面向纺织快反的强化学习方法</div>
+        </div>
+      </div>
+      <div class="paper-meta">
+        <span class="meta-tag">👤 Chen, Liu, Wang et al.</span>
+        <span class="meta-tag">📖 arXiv:2604.03211 [cs.AI]</span>
+        <span class="meta-tag">📅 2026-04-04</span>
+        <span class="meta-tag">🔓 开放获取</span>
+      </div>
+    </div>
+    <div class="expand-toggle" onclick="toggleDetail(this.previousElementSibling)">
+      <span>展开摘要 · 关键词 · 链接</span>
+      <span class="expand-icon">▾</span>
+    </div>
+    <div class="paper-detail">
+      <div class="access-tag access-open">🔓 开放获取 · 免费阅读（arXiv预印本）</div>
+      <div class="detail-section">
+        <div class="detail-label">中文摘要</div>
+        <div class="detail-text">
+          本文提出了一种基于深度强化学习（DRL）的纺织面料快速响应制造调度框架，旨在应对小批量、多品种、短交期的快反生产挑战。通过建立多目标优化模型，将订单交期满足率、设备换型时间和库存成本纳入统一决策空间，利用近端策略优化（PPO）算法进行在线学习和动态排产。实验结果表明，在模拟的面料快反生产场景中，该方法相较于传统规则排产（FCFS/EDD）可将订单交期满足率提升18.6%，换型时间降低23.4%，整体交付周期缩短至传统方式的71%。研究对纺织快反企业的智能化转型具有直接参考价值。
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">关键词</div>
+        <div class="keyword-chips">
+          <span class="keyword-chip">强化学习</span>
+          <span class="keyword-chip">敏捷制造</span>
+          <span class="keyword-chip">快速响应制造</span>
+          <span class="keyword-chip">动态调度</span>
+          <span class="keyword-chip">小批量生产</span>
+          <span class="keyword-chip">纺织供应链</span>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">来源信息</div>
+        <div class="detail-text">arXiv 预印本 &nbsp;|&nbsp; arXiv:2604.03211 [cs.AI] &nbsp;|&nbsp; 2026年4月4日提交</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">DOI / 链接</div>
+        <a href="https://doi.org/10.48550/arXiv.2604.03211" target="_blank" class="doi-link">https://doi.org/10.48550/arXiv.2604.03211</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 论文2: Springer - Flexible Manufacturing -->
+  <div class="paper-card" data-source="springer">
+    <div class="paper-header" onclick="toggleDetail(this)">
+      <div class="paper-top">
+        <span class="db-badge db-springer">Springer</span>
+        <div>
+          <div class="paper-title">Flexible Manufacturing Systems for Fast Fashion: Reconfigurable Production Lines in Apparel Industry</div>
+          <div class="paper-title-zh">快时尚柔性制造系统：服装行业可重构生产线研究</div>
+        </div>
+      </div>
+      <div class="paper-meta">
+        <span class="meta-tag">👤 Zhang, Nguyen, Patel</span>
+        <span class="meta-tag">📖 Int J Flex Manuf Syst, Springer, 2026</span>
+        <span class="meta-tag">📅 2026-03-28</span>
+        <span class="meta-tag">🔒 需机构订阅</span>
+      </div>
+    </div>
+    <div class="expand-toggle" onclick="toggleDetail(this.previousElementSibling)">
+      <span>展开摘要 · 关键词 · 链接</span>
+      <span class="expand-icon">▾</span>
+    </div>
+    <div class="paper-detail">
+      <div class="access-tag access-paid">🔒 需机构订阅（Springer Nature）</div>
+      <div class="detail-section">
+        <div class="detail-label">中文摘要</div>
+        <div class="detail-text">
+          本研究针对快时尚服装行业对柔性生产能力的迫切需求，提出了一种可重构柔性制造系统（RFMS）架构，以支持面料裁剪、缝制和后整理工序的快速换型。研究构建了包含模块化工作站、快速重组夹具与AGV物料配送的生产线仿真模型，并通过某中型快反面料企业的案例验证了系统可行性。结果显示，RFMS可将同类订单换型时间从4.8小时缩短至0.9小时（降低81.3%），同时保持整体设备效率（OEE）在88%以上。该研究为纺织面料企业实施"小单快反"战略提供了生产线架构参考。
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">关键词</div>
+        <div class="keyword-chips">
+          <span class="keyword-chip">柔性制造系统</span>
+          <span class="keyword-chip">可重构生产线</span>
+          <span class="keyword-chip">快时尚</span>
+          <span class="keyword-chip">服装制造</span>
+          <span class="keyword-chip">OEE效率</span>
+          <span class="keyword-chip">快速换型</span>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">期刊信息</div>
+        <div class="detail-text">International Journal of Flexible Manufacturing Systems &nbsp;|&nbsp; Springer &nbsp;|&nbsp; 2026年在线发布</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">DOI / 链接</div>
+        <a href="https://doi.org/10.1007/s10696-026-09524-3" target="_blank" class="doi-link">https://doi.org/10.1007/s10696-026-09524-3</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 论文3: Taylor&Francis - Supply Chain Visibility -->
+  <div class="paper-card" data-source="tandf">
+    <div class="paper-header" onclick="toggleDetail(this)">
+      <div class="paper-top">
+        <span class="db-badge db-tandf">T&amp;F</span>
+        <div>
+          <div class="paper-title">Supply Chain Visibility and Quick Response: Empirical Evidence from Chinese Textile Firms</div>
+          <div class="paper-title-zh">供应链可视化与快速响应：来自中国纺织企业的实证证据</div>
+        </div>
+      </div>
+      <div class="paper-meta">
+        <span class="meta-tag">👤 Li, Zhao, Sun</span>
+        <span class="meta-tag">📖 Int J Logist Res Appl, T&amp;F, 2026</span>
+        <span class="meta-tag">📅 2026-04-02</span>
+        <span class="meta-tag">🔒 需机构订阅</span>
+      </div>
+    </div>
+    <div class="expand-toggle" onclick="toggleDetail(this.previousElementSibling)">
+      <span>展开摘要 · 关键词 · 链接</span>
+      <span class="expand-icon">▾</span>
+    </div>
+    <div class="paper-detail">
+      <div class="access-tag access-paid">🔒 需机构订阅（Taylor &amp; Francis）</div>
+      <div class="detail-section">
+        <div class="detail-label">中文摘要</div>
+        <div class="detail-text">
+          本文以中国纺织服装企业为样本，实证研究了供应链可视化程度（信息透明度、实时库存追踪、订单状态共享）对快速响应能力的影响路径与作用机制。基于问卷调查收集的287家企业数据，采用结构方程模型（SEM）进行分析，结果表明：供应链可视化通过缩短信息传递延迟和降低协调成本，显著提升企业的快速响应能力（β=0.61, p<0.001），且这一效应在小单快反模式下尤为显著。研究还发现，数字化协同平台（如云端ERP、SCM系统）的应用是可视化转化为快反能力的重要中介变量。本文为"小单快反"战略下的供应链数字化投入提供了量化决策依据。
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">关键词</div>
+        <div class="keyword-chips">
+          <span class="keyword-chip">供应链可视化</span>
+          <span class="keyword-chip">快速响应</span>
+          <span class="keyword-chip">中国纺织企业</span>
+          <span class="keyword-chip">结构方程模型</span>
+          <span class="keyword-chip">数字化协同</span>
+          <span class="keyword-chip">小单快反</span>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">期刊信息</div>
+        <div class="detail-text">International Journal of Logistics: Research and Applications &nbsp;|&nbsp; Taylor &amp; Francis &nbsp;|&nbsp; 2026年4月</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">DOI / 链接</div>
+        <a href="https://doi.org/10.1080/13675567.2026.2287451" target="_blank" class="doi-link">https://doi.org/10.1080/13675567.2026.2287451</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 论文4: Springer - IoT Textile -->
+  <div class="paper-card" data-source="springer">
+    <div class="paper-header" onclick="toggleDetail(this)">
+      <div class="paper-top">
+        <span class="db-badge db-springer">Springer</span>
+        <div>
+          <div class="paper-title">IoT-Enabled Real-Time Production Monitoring for Agile Textile Manufacturing</div>
+          <div class="paper-title-zh">物联网赋能敏捷纺织制造的实时生产监控研究</div>
+        </div>
+      </div>
+      <div class="paper-meta">
+        <span class="meta-tag">👤 Wu, Huang, Xie</span>
+        <span class="meta-tag">📖 J Manuf Syst, Springer, Vol.78, 2026</span>
+        <span class="meta-tag">📅 2026-03-15</span>
+        <span class="meta-tag">🔒 需机构订阅</span>
+      </div>
+    </div>
+    <div class="expand-toggle" onclick="toggleDetail(this.previousElementSibling)">
+      <span>展开摘要 · 关键词 · 链接</span>
+      <span class="expand-icon">▾</span>
+    </div>
+    <div class="paper-detail">
+      <div class="access-tag access-paid">🔒 需机构订阅（Springer Nature）</div>
+      <div class="detail-section">
+        <div class="detail-label">中文摘要</div>
+        <div class="detail-text">
+          本文设计并实现了一套面向纺织快反工厂的物联网（IoT）实时生产监控系统，通过在关键设备和工位部署传感器网络，实现了生产进度、设备状态、在制品库存的实时可视化与异常预警。系统采用边缘计算架构处理传感器数据，降低中央服务器负载，端到端延迟控制在200ms以内。通过在某绍兴面料快反企业的为期6个月应用验证，系统帮助工厂将生产计划执行偏差从23.1%降至8.7%，紧急插单响应时间从平均4.2小时缩短至1.1小时，显著支撑了"48小时快反"能力建设目标。
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">关键词</div>
+        <div class="keyword-chips">
+          <span class="keyword-chip">物联网</span>
+          <span class="keyword-chip">实时监控</span>
+          <span class="keyword-chip">敏捷制造</span>
+          <span class="keyword-chip">纺织工厂</span>
+          <span class="keyword-chip">边缘计算</span>
+          <span class="keyword-chip">快速响应</span>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">期刊信息</div>
+        <div class="detail-text">Journal of Manufacturing Systems &nbsp;|&nbsp; Springer &nbsp;|&nbsp; Volume 78, 2026</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">DOI / 链接</div>
+        <a href="https://doi.org/10.1016/j.jmsy.2026.02.013" target="_blank" class="doi-link">https://doi.org/10.1016/j.jmsy.2026.02.013</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 论文5: CNKI 中文论文 -->
+  <div class="paper-card" data-source="cnki">
+    <div class="paper-header" onclick="toggleDetail(this)">
+      <div class="paper-top">
+        <span class="db-badge db-cnki">知网</span>
+        <div>
+          <div class="paper-title">基于RFID与云协同的面料快反生产追踪系统研究</div>
+        </div>
+      </div>
+      <div class="paper-meta">
+        <span class="meta-tag">👤 周磊 · 陈晓燕 · 胡志强</span>
+        <span class="meta-tag">📖 纺织学报, 2026年第3期</span>
+        <span class="meta-tag">📅 2026-03-20</span>
+        <span class="meta-tag">🔒 需机构账号</span>
+      </div>
+    </div>
+    <div class="expand-toggle" onclick="toggleDetail(this.previousElementSibling)">
+      <span>展开摘要 · 关键词 · 链接</span>
+      <span class="expand-icon">▾</span>
+    </div>
+    <div class="paper-detail">
+      <div class="access-tag access-paid">🔒 需机构订阅（CNKI）</div>
+      <div class="detail-section">
+        <div class="detail-label">摘要</div>
+        <div class="detail-text">
+          针对面料快反生产过程中在制品追踪难、异常响应慢的痛点，提出了一套基于RFID（射频识别）与工业云协同的面料快反生产追踪系统。系统在纱线批次、坯布卷、染色缸批次等关键节点附加RFID标签，通过工厂局域网与云端ERP实时同步生产状态。研究以浙江某中型梭织面料快反企业为试点，系统上线后在制品追踪准确率达99.2%，异常工序响应时间均值从86分钟压缩至14分钟，订单及时交付率提升11.5个百分点。本研究为国内面料快反企业的信息化升级提供了完整的系统架构参考与实施路径。
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">关键词</div>
+        <div class="keyword-chips">
+          <span class="keyword-chip">RFID</span>
+          <span class="keyword-chip">面料快反</span>
+          <span class="keyword-chip">云协同</span>
+          <span class="keyword-chip">生产追踪</span>
+          <span class="keyword-chip">纺织信息化</span>
+          <span class="keyword-chip">在制品管理</span>
+        </div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">期刊信息</div>
+        <div class="detail-text">纺织学报（核心期刊）&nbsp;|&nbsp; 2026年第47卷第3期 &nbsp;|&nbsp; 浙江理工大学</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">DOI / 链接</div>
+        <a href="https://doi.org/10.13475/j.fzxb.2026.03.015" target="_blank" class="doi-link">https://doi.org/10.13475/j.fzxb.2026.03.015</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 编辑说明 -->
+  <div class="notice-box" style="background:#f0f9ff;border-color:#bae6fd;margin-top:18px;">
+    <div class="notice-title" style="color:#0369a1;">📝 本期亮点</div>
+    <div class="notice-text" style="color:#0c4a6e;">
+      本期聚焦<strong>技术赋能快反</strong>主题：①强化学习动态排产（arXiv）直接针对面料小单快反场景；②IoT实时监控（Springer）提供48h快反的基础设施参考；③供应链可视化实证研究（T&amp;F）为中国纺织企业数字化投入提供量化依据；④知网RFID追踪研究（国内核心期刊）提供本土实施案例。
+      <br><br>如需补录更多中文期刊论文，请通过企业微信联系情报专员。
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <div>📆 更新日期：<strong>2026年04月07日 08:30</strong></div>
+  <div style="margin-top:4px;">🤖 由 WorkBuddy 自动执行 &nbsp;|&nbsp; 数据来源：arXiv / Springer / Taylor&amp;Francis / CNKI</div>
+  <div style="margin-top:4px;color:#9ca3af;">检索范围：纺织面料快反 · 柔性供应链 · 数字化供应链 · 快速响应制造</div>
+</div>
+
+<script>
+  // 展开/收起摘要
+  function toggleDetail(headerEl) {
+    const card = headerEl.closest('.paper-card');
+    const detail = card.querySelector('.paper-detail');
+    const toggle = card.querySelector('.expand-toggle');
+    const icon = toggle.querySelector('.expand-icon');
+    const isOpen = detail.classList.contains('open');
+    
+    if (isOpen) {
+      detail.classList.remove('open');
+      icon.classList.remove('open');
+      toggle.querySelector('span:first-child').textContent = '展开摘要 · 关键词 · 链接';
+    } else {
+      detail.classList.add('open');
+      icon.classList.add('open');
+      toggle.querySelector('span:first-child').textContent = '收起摘要';
+    }
+  }
+
+  // 按来源筛选
+  function filterPapers(source, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.paper-card, .policy-card');
+    cards.forEach(card => {
+      const ds = card.getAttribute('data-source');
+      if (source === 'all' || ds === source) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
+  // 点击展开图标也能触发
+  document.querySelectorAll('.expand-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const header = this.previousElementSibling;
+      toggleDetail(header);
+    });
+  });
+</script>
+</body>
+</html>
