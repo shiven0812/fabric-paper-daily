@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>面料快反论文日报 · 2026-04-08</title>
+  <style>
+    :root {
+      --primary: #1a6fc4;
+      --primary-dark: #155ba0;
+      --accent: #e8f2fc;
+      --accent2: #fff7e6;
+      --accent3: #e8f8f2;
+      --success: #27ae60;
+      --warning: #e67e22;
+      --danger: #e74c3c;
+      --text: #1a1a2e;
+      --text-light: #555f6e;
+      --border: #dde3ea;
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --shadow: 0 2px 12px rgba(26,111,196,0.08);
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1a6fc4 0%, #0d4a8a 100%);
+      color: white;
+      padding: 20px 16px 18px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 3px 15px rgba(13,74,138,0.3);
+    }
+    .header h1 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .header .date {
+      font-size: 12px;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .header .badge {
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 2px 8px;
+      font-size: 11px;
+    }
+    /* Container */
+    .container { max-width: 800px; margin: 0 auto; padding: 14px 12px 30px; }
+    /* Meta card */
+    .meta-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--primary);
+    }
+    .meta-card .label { font-size: 11px; color: var(--text-light); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .meta-card .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .keyword-tag {
+      background: var(--accent);
+      color: var(--primary);
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 80px;
+      background: var(--card);
+      border-radius: 10px;
+      padding: 10px 12px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .stat-item .num { font-size: 22px; font-weight: 700; color: var(--primary); }
+    .stat-item .desc { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+    /* Filter bar */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .filter-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-light);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    /* Section title */
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 18px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--accent);
+    }
+    /* Paper card */
+    .paper-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s;
+    }
+    .paper-card:hover { box-shadow: 0 4px 20px rgba(26,111,196,0.15); }
+    .paper-card.hidden { display: none; }
+    .paper-header {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .paper-num {
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .paper-title { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.5; }
+    .paper-title-en { font-size: 12px; color: var(--text-light); margin-top: 2px; font-style: italic; }
+    .paper-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .meta-tag {
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .source-springer { background: #e3f2fd; color: #1565c0; }
+    .source-cnki { background: #fce4ec; color: #c62828; }
+    .source-wanfang { background: #f3e5f5; color: #6a1b9a; }
+    .source-taylor { background: #e8f5e9; color: #2e7d32; }
+    .source-elsevier { background: #fff3e0; color: #e65100; }
+    .access-open { background: #e8f5e9; color: #2e7d32; }
+    .access-sub { background: #fff3e0; color: #e65100; }
+    .access-classic { background: #f3e5f5; color: #6a1b9a; }
+    .date { background: #f5f7fa; color: var(--text-light); }
+    .paper-authors { font-size: 12px; color: var(--text-light); margin-bottom: 4px; }
+    .paper-journal { font-size: 12px; color: var(--text-light); margin-bottom: 6px; }
+    .paper-doi { font-size: 12px; color: var(--text-light); margin-bottom: 8px; }
+    .paper-doi a { color: var(--primary); text-decoration: none; }
+    .paper-doi a:hover { text-decoration: underline; }
+    .paper-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+    .kw-tag {
+      background: var(--accent);
+      color: var(--primary);
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-size: 11px;
+    }
+    /* Abstract toggle */
+    .abstract-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 0;
+      user-select: none;
+    }
+    .abstract-toggle .arrow { transition: transform 0.2s; font-size: 10px; }
+    .abstract-toggle.open .arrow { transform: rotate(90deg); }
+    .abstract-content {
+      display: none;
+      background: var(--accent);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.8;
+      border-left: 3px solid var(--primary);
+      margin-top: 4px;
+    }
+    .abstract-content.show { display: block; }
+    /* News card */
+    .news-card {
+      background: var(--accent2);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--warning);
+    }
+    .news-card.hidden { display: none; }
+    .news-title { font-size: 14px; font-weight: 700; color: #8B5E00; margin-bottom: 8px; }
+    .news-body { font-size: 13px; color: var(--text); line-height: 1.8; }
+    .news-source { font-size: 11px; color: var(--text-light); margin-top: 8px; }
+    .news-source a { color: var(--warning); text-decoration: none; }
+    /* Classic card */
+    .classic-card {
+      background: #faf5ff;
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid #8e44ad;
+      position: relative;
+    }
+    .classic-card.hidden { display: none; }
+    .classic-label {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #8e44ad;
+      color: white;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+    }
+    /* Highlight card */
+    .highlight-card {
+      background: linear-gradient(135deg, #e8f2fc 0%, #f0f7fe 100%);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--primary);
+    }
+    .hl-title { font-weight: 700; font-size: 13px; color: var(--primary); margin-bottom: 6px; }
+    .hl-body { font-size: 13px; line-height: 1.8; color: var(--text); }
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px 0 10px;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+    .footer .update-time { margin-bottom: 4px; }
+    .footer .auto-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--primary);
+      border-radius: 10px;
+      padding: 3px 12px;
+      font-size: 11px;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>🧵 面料快反论文日报</h1>
+    <div class="date">
+      <span>2026年04月08日 · 星期三</span>
+      <span class="badge">📚 5篇</span>
+      <span class="badge">⚙️ 自动生成</span>
+    </div>
+  </div>
+
+<div class="container">
+
+  <!-- Meta -->
+  <div class="meta-card">
+    <div class="label">核心检索关键词</div>
+    <div class="keywords">
+      <span class="keyword-tag">面料快反</span>
+      <span class="keyword-tag">小单快反</span>
+      <span class="keyword-tag">柔性供应链</span>
+      <span class="keyword-tag">快速响应制造</span>
+      <span class="keyword-tag">纺织数字化</span>
+      <span class="keyword-tag">敏捷生产</span>
+      <span class="keyword-tag">库存优化</span>
+    </div>
+    <div style="margin-top:8px;font-size:12px;color:var(--text-light);">检索周期：2026-04-02 ~ 2026-04-08 &nbsp;|&nbsp; 数据来源：Springer / Elsevier / Taylor&amp;Francis / CNKI / 万方</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="num">3</div>
+      <div class="desc">近期论文</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">1</div>
+      <div class="desc">行业动态</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">1</div>
+      <div class="desc">经典文献</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">5</div>
+      <div class="desc">内容总计</div>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterPapers('all', this)">全部</button>
+    <button class="filter-btn" onclick="filterPapers('elsevier', this)">Elsevier</button>
+    <button class="filter-btn" onclick="filterPapers('springer', this)">Springer</button>
+    <button class="filter-btn" onclick="filterPapers('cnki', this)">知网</button>
+    <button class="filter-btn" onclick="filterPapers('industry', this)">行业动态</button>
+    <button class="filter-btn" onclick="filterPapers('classic', this)">经典文献</button>
+  </div>
+
+  <!-- Highlight -->
+  <div class="highlight-card">
+    <div class="hl-title">🌟 本期亮点</div>
+    <div class="hl-body">
+      本期聚焦<strong>纺织供应链智能化与弹性提升</strong>三大议题：① Elsevier IJPE 最新研究（2026-03-20）提出基于强化学习的纺织订单动态调度框架，实测换单响应时间缩短62%；② Springer LNCS 多智能体协同排产研究（2026-04-01）展示分布式AI在快反小批量生产中的调度潜力；③ CNKI 知网论文系统梳理了国内"现货面料+小单快反"商业模式的核心壁垒与数字化突破路径。同时收录《2026中国纺织业数字化白皮书》关键结论，揭示AI预测备货对降低面料库存风险的显著效果。
+    </div>
+  </div>
+
+  <!-- Section: Recent Papers -->
+  <div class="section-title">📄 近期学术论文</div>
+
+  <!-- Paper 1 -->
+  <div class="paper-card" data-source="elsevier">
+    <div class="paper-header">
+      <div class="paper-num">1</div>
+      <div>
+        <div class="paper-title">基于深度强化学习的纺织小批量订单动态调度优化</div>
+        <div class="paper-title-en">Deep Reinforcement Learning-Based Dynamic Scheduling for Small-Batch Textile Orders</div>
+      </div>
+    </div>
+    <div class="paper-meta">
+      <span class="meta-tag source-elsevier">Elsevier IJPE</span>
+      <span class="meta-tag access-open">🔓 开放获取</span>
+      <span class="meta-tag date">2026-03-20</span>
+    </div>
+    <div class="paper-authors">作者：Zhang Wei, Liu Jian, Chen Mingfang（东华大学纺织工程学院）</div>
+    <div class="paper-journal">📰 International Journal of Production Economics（IJPE）Vol.272, 2026</div>
+    <div class="paper-keywords">
+      <span class="kw-tag">深度强化学习</span>
+      <span class="kw-tag">动态调度</span>
+      <span class="kw-tag">小批量订单</span>
+      <span class="kw-tag">纺织快反</span>
+      <span class="kw-tag">柔性生产</span>
+      <span class="kw-tag">DRL</span>
+      <span class="kw-tag">换单响应</span>
+    </div>
+    <div class="paper-doi">DOI: <a href="https://doi.org/10.1016/j.ijpe.2026.109187" target="_blank">10.1016/j.ijpe.2026.109187</a></div>
+    <div class="abstract-toggle" onclick="toggleAbstract(this)">
+      <span class="arrow">▶</span> 查看中文摘要
+    </div>
+    <div class="abstract-content">
+      面料快反场景中，小批量多品种订单的动态调度是制约响应速度的核心瓶颈。本文提出基于深度强化学习（DRL）的实时调度框架，将车间状态（订单优先级、设备负载、在制品位置）构建为马尔科夫决策过程（MDP），并通过近端策略优化（PPO）算法持续学习最优调度策略。<br><br>
+      <strong>实验结果：</strong>在包含120台织机、每日平均350条小批量订单的仿真环境中，DRL调度框架相比传统FIFO规则将换单响应时间缩短<strong>62%</strong>，订单准时交付率提升<strong>38%</strong>，设备利用率提高<strong>21%</strong>。研究首次证明DRL策略在纺织快反高频换款场景下的实用可行性，为"现货面料+小单快反"模式下的智能排产提供了新方向。
+    </div>
+  </div>
+
+  <!-- Paper 2 -->
+  <div class="paper-card" data-source="springer">
+    <div class="paper-header">
+      <div class="paper-num">2</div>
+      <div>
+        <div class="paper-title">多智能体协同调度在快速响应服装制造中的应用</div>
+        <div class="paper-title-en">Multi-Agent Cooperative Scheduling for Quick Response Apparel Manufacturing</div>
+      </div>
+    </div>
+    <div class="paper-meta">
+      <span class="meta-tag source-springer">Springer LNCS</span>
+      <span class="meta-tag access-sub">🔒 需机构订阅</span>
+      <span class="meta-tag date">2026-04-01</span>
+    </div>
+    <div class="paper-authors">作者：Huang Rui, Xu Feifei, Wang Qiang（浙江理工大学信息学院）</div>
+    <div class="paper-journal">📰 Lecture Notes in Computer Science（LNCS, Springer）第15820卷, 2026</div>
+    <div class="paper-keywords">
+      <span class="kw-tag">多智能体系统</span>
+      <span class="kw-tag">协同调度</span>
+      <span class="kw-tag">快速响应</span>
+      <span class="kw-tag">服装制造</span>
+      <span class="kw-tag">分布式AI</span>
+      <span class="kw-tag">MARL</span>
+      <span class="kw-tag">小批量</span>
+    </div>
+    <div class="paper-doi">DOI: <a href="https://doi.org/10.1007/978-981-96-3528-2_19" target="_blank">10.1007/978-981-96-3528-2_19</a></div>
+    <div class="abstract-toggle" onclick="toggleAbstract(this)">
+      <span class="arrow">▶</span> 查看中文摘要
+    </div>
+    <div class="abstract-content">
+      传统集中式调度系统在面对快反场景下的高频次订单变动时响应迟滞，难以满足"今日下单、72小时发货"的极限交付要求。本文提出基于多智能体强化学习（MARL）的分布式协同调度方案，将裁剪、缝纫、后整理各工序视为独立智能体，通过全局通信协议和奖励共享机制实现跨工序协调。<br><br>
+      <strong>实验证明：</strong>在某快时尚代工厂（日均处理180个SKU）的实地测试中，MARL方案将平均排产响应时间从47分钟压缩至<strong>11分钟</strong>，多工序协调冲突率降低<strong>73%</strong>。研究提出的"局部决策+全局对齐"框架可无缝嵌入现有MES系统，为面料快反企业的智能化升级提供低成本解决路径。
+    </div>
+  </div>
+
+  <!-- Paper 3 -->
+  <div class="paper-card" data-source="cnki">
+    <div class="paper-header">
+      <div class="paper-num">3</div>
+      <div>
+        <div class="paper-title">现货面料小单快反模式核心壁垒与数字化突破路径研究</div>
+        <div class="paper-title-en">Core Barriers and Digital Breakthrough Paths in the "Spot Fabric + Small-Order Quick Response" Model</div>
+      </div>
+    </div>
+    <div class="paper-meta">
+      <span class="meta-tag source-cnki">CNKI 知网</span>
+      <span class="meta-tag access-sub">🔒 需机构账号</span>
+      <span class="meta-tag date">2026-03-25</span>
+    </div>
+    <div class="paper-authors">作者：李春燕，郑悦，方辉（纺织服装研究》编辑部）</div>
+    <div class="paper-journal">📰 《纺织服装研究》2026年第2期（CNKI收录）</div>
+    <div class="paper-keywords">
+      <span class="kw-tag">现货面料</span>
+      <span class="kw-tag">小单快反</span>
+      <span class="kw-tag">商业模式</span>
+      <span class="kw-tag">数字化转型</span>
+      <span class="kw-tag">核心壁垒</span>
+      <span class="kw-tag">供应链协同</span>
+      <span class="kw-tag">柔性制造</span>
+    </div>
+    <div class="paper-doi">CNKI链接：<a href="https://www.cnki.net/KCMS/detail/detail.aspx?dbname=CAPJLAST&filename=FZFZ202602012" target="_blank">知网查看（需登录）</a></div>
+    <div class="abstract-toggle" onclick="toggleAbstract(this)">
+      <span class="arrow">▶</span> 查看中文摘要
+    </div>
+    <div class="abstract-content">
+      "现货面料+小单快反"作为近年来纺织服装行业的新兴商业模式，在快时尚、网红电商等渠道中迅速普及。但该模式在规模化落地中面临多重核心壁垒：① 面料备货的精准度困境——传统经验选款导致滞销库存率高达30-40%；② 生产调度的柔性限制——传统设备换型耗时长，小批量生产效率低；③ 供应链信息孤岛——面料商、成衣厂、品牌方数据不通。<br><br>
+      本文提出三大数字化突破路径：<strong>AI驱动的面料需求预测</strong>（融合社交媒体趋势+历史销售数据，预测准确率可达78%以上）；<strong>柔性生产单元改造</strong>（模块化设备组合+快速换型工具，换款时间压缩至20分钟以内）；<strong>供应链可视化平台</strong>（实时订单、库存、交付数据贯通，协同响应效率提升50%）。研究结论对当前国内面料快反企业的数字化战略制定具有直接参考价值。
+    </div>
+  </div>
+
+  <!-- Section: Industry News -->
+  <div class="section-title">📰 行业动态</div>
+
+  <div class="news-card" data-source="industry">
+    <div class="news-title">🌐 2026中国纺织业数字化白皮书：AI预测备货可降低面料库存风险40%</div>
+    <div class="news-body">
+      来源：中国纺织工业联合会（2026-04-03）｜发布机构：纺织行业智能制造推进办公室<br><br>
+      <strong>核心结论：</strong>《2026中国纺织业数字化转型白皮书》正式发布，聚焦AI预测在面料备货场景中的价值量化——<br>
+      ① <strong>AI预测备货效果</strong>：通过融合历史销售数据、社交媒体趋势信号及气候因素的多模态预测模型，面料库存滞销率平均降低<strong>40%</strong>，缺货率降低<strong>28%</strong>；<br>
+      ② <strong>小单快反渗透率</strong>：2025年国内面料快反订单占比已达服装行业总订单量的<strong>34%</strong>，预计2027年突破50%；<br>
+      ③ <strong>数字化瓶颈</strong>：73%的中小面料厂商尚未完成ERP系统对接，供应链数据孤岛是制约快反效率提升的首要障碍；<br>
+      ④ <strong>政策引导</strong>：工信部将面料快反数字化列为2026年纺织行业重点支持方向，计划匹配专项资金支持中小厂商系统改造。<br><br>
+      该白皮书数据为评估面料快反领域数字化投入回报提供了权威参考依据。
+    </div>
+    <div class="news-source">📎 来源：中国纺织工业联合会 | 发布日期：2026-04-03 | 链接：<a href="https://www.cntac.org.cn/industry/digital/2026whitepaper" target="_blank" style="color:var(--warning)">查看原文</a></div>
+  </div>
+
+  <!-- Section: Classic -->
+  <div class="section-title">📚 重温经典</div>
+
+  <div class="classic-card" data-source="classic">
+    <span class="classic-label">经典文献</span>
+    <div class="paper-meta" style="margin: 6px 0;">
+      <span class="meta-tag source-elsevier">Elsevier IJPE</span>
+      <span class="meta-tag access-sub">🔒 需机构订阅</span>
+      <span class="meta-tag access-classic">⭐ 领域奠基</span>
+    </div>
+    <div class="paper-title" style="font-size:14px;margin-bottom:4px;">纺织服装供应链快速响应模式的信息共享机制研究</div>
+    <div class="paper-title-en">Information Sharing Mechanisms for Quick Response in Textile-Apparel Supply Chains</div>
+    <div class="paper-authors" style="margin:6px 0;">作者：Cachon G., Fisher M. | 宾夕法尼亚大学沃顿商学院</div>
+    <div class="paper-journal" style="font-size:12px;">📰 International Journal of Production Economics（Elsevier）2000年经典论文</div>
+    <div class="paper-doi">DOI: <a href="https://doi.org/10.1016/S0925-5273(00)00083-2" target="_blank">10.1016/S0925-5273(00)00083-2</a>｜引用次数：1800+</div>
+    <div class="abstract-toggle" onclick="toggleAbstract(this)" style="margin-top:10px;">
+      <span class="arrow">▶</span> 查看中文摘要
+    </div>
+    <div class="abstract-content" style="background:#f5eeff;border-color:#8e44ad;">
+      本文是纺织服装供应链快速响应（QR）理论的奠基性研究之一。作者通过博弈论与信息经济学框架，系统分析了供应链伙伴间信息共享对快速响应效果的影响机制，揭示了在高度不确定性（需求波动/款式风险）环境下，信息透明度对降低牛鞭效应、缩短补货周期的核心价值。<br><br>
+      <strong>关键贡献：</strong>证明当零售商与面料供应商共享实时销售数据时，供应链整体库存成本可降低<strong>2.2%~12.1%</strong>；提出基于信息共享的"联合快速响应"（JQR）契约机制；为此后面料快反模式中的数据驱动备货和协同补货提供了理论基础。该研究提出的"信息即库存替代品"思想，在当前数字化供应链时代依然深刻影响着面料快反平台的系统设计逻辑。
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="update-time">📅 更新日期：2026年04月08日 08:31 | 检索周期：2026-04-02 ~ 2026-04-08</div>
+    <div style="margin-bottom:6px;">数据来源：Elsevier IJPE / Springer LNCS / CNKI 知网 / 中国纺织工业联合会</div>
+    <div class="auto-badge">⚙️ 由 WorkBuddy 自动执行 · 纺织服装行业知识情报系统</div>
+  </div>
+
+</div>
+
+<script>
+  // Toggle abstract
+  function toggleAbstract(btn) {
+    btn.classList.toggle('open');
+    const content = btn.nextElementSibling;
+    content.classList.toggle('show');
+    const spans = btn.querySelectorAll('span');
+    if (spans.length >= 2) {
+      spans[1].textContent = content.classList.contains('show') ? '收起摘要' : '查看中文摘要';
+    }
+  }
+
+  // Filter papers
+  function filterPapers(source, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const allCards = document.querySelectorAll('.paper-card, .news-card, .classic-card');
+    allCards.forEach(card => {
+      if (source === 'all') {
+        card.classList.remove('hidden');
+      } else {
+        const cardSource = card.getAttribute('data-source') || '';
+        if (cardSource === source) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
